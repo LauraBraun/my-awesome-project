@@ -1,0 +1,55 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url(https://www.stockvault.net//data/2020/12/31/282149/thumb16.jpg);
+  font-family: monospace;
+  color: aliceblue;
+  font-size: 20px;
+}
+
+footer i {
+  font-size: 30px;
+  display: block;
+  margin-left: 0;
+}
+
+.container {
+  padding: 30px;
+  border: 2px solid aliceblue;
+  border-radius: 30px;
+  width: 60%;
+  background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+}
+#currentConditions {
+  font-size: 80px;
+  margin: 0 40px;
+  padding-top: 20px;
+}
+
+.currentTemp {
+  font-size: 60px;
+  margin: 30px;
+}
+
+.card {
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  margin-right: 20px;
+  text-align: center;
+}
+
+#degreeConversion {
+  font-size: 20px;
+  background-color: #3e4c76;
+  color: aliceblue;
+  border-radius: 10px;
+  position: relative;
+  top: -20px;
+  left: -30px;
+}
+
+#degreeConversion:hover {
+  color: #3e4c76;
+  background-color: aliceblue;
+}

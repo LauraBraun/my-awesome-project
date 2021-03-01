@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b12ae6dbcc.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <title>Weather</title>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="row">
+          <div class="col-sm">
+            <form id="citysearch">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search City"
+                  aria-label="Search City"
+                  aria-describedby="button-addon2"
+                  id="search-city"
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  type="submit"
+                  id="button-addon2"
+                >
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+            <section>
+              <button class="btn btn-outline-secondary" id="coordinates">
+                Current location
+              </button>
+              <i id="currentConditions" class="fas fa-cloud-rain"></i>
+              <br />
+              <span class="currentTemp"></span>
+              <button id="degreeConversion">°C</button>
+            </section>
+          </div>
+          <div class="col-sm">
+            <h2 id="displayCity"></h2>
+            <span id="currentTime"></span>
+            <br />
+            <br />
+            <div id="precipitation">Precipitation:</div>
+            <div id="windspeed">Wind: m/s</div>
+          </div>
+          <div class="col-sm">
+            <h2 id="currentDay"></h2>
+            <span id="date"></span>
+            <br />
+            <br />
+            <div id="humidity">Humidity:</div>
+            <div id="uvindex">UV index:</div>
+          </div>
+        </div>
+      </header>
+
+      <br />
+
+      <footer>
+        <div class="row">
+          <div class="col-sm-2">
+            Today
+            <br />
+            28/01
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-cloud-rain"></i>
+              </div>
+            </div>
+            10°C/ 4°C
+          </div>
+          <div class="col-sm-2">
+            Friday
+            <br />
+            29/01
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-cloud-rain"></i>
+              </div>
+            </div>
+            3°C/ -1°C
+          </div>
+          <div class="col-sm-2">
+            Saturday
+            <br />
+            30/01
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-cloud-sun"></i>
+              </div>
+            </div>
+            4°C/ -2°C
+          </div>
+          <div class="col-sm-2">
+            Sunday
+            <br />
+            31/01
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-cloud-sun"></i>
+              </div>
+            </div>
+            5°C/ -2°C
+          </div>
+          <div class="col-sm-2">
+            Monday
+            <br />
+            01/02
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-cloud"></i>
+              </div>
+            </div>
+            7°C/ -2°C
+          </div>
+          <div class="col-sm-2">
+            Tuesday
+            <br />
+            02/02
+            <div class="card">
+              <div class="card-body">
+                <i class="fas fa-cloud-rain"></i>
+              </div>
+            </div>
+            7°C/ 4°C
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="src/script.js"></script>
+  </body>
+</html>
