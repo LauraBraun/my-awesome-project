@@ -90,14 +90,6 @@ let windSpeed = document.querySelector("#windspeed");
 let nowWindspeed = response.data.wind.speed;
 windSpeed.innerHTML = `Wind: ${nowWindspeed} m/s`;
 
-//let precipitation = document.querySelector("#precipitation");
-//let nowPrecipitation = response.data.rain["1h"];
-//if (nowPrecipitation === undefined) {
-  //precipitation.innerHTML = `Precipitation: 0 mm`;
-//} else {
-  //precipitation.innerHTML = `Precipitation: ${nowPrecipitation}mm`;
-//}
-
 }
 
 function searchCity (city) {
