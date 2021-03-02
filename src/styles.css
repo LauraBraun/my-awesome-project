@@ -39,6 +39,13 @@ footer i {
   text-align: center;
 }
 
+.bylau {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
 #degreeConversion {
   font-size: 20px;
   background-color: #3e4c76;
