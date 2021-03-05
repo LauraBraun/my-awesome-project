@@ -55,21 +55,17 @@ updateDateTime(now);
 function changeUnit () {
   if (unit.innerHTML === "°C") {
   let temp = document.querySelector(".currentTemp");
-  let fahrenheitTemp =Math.round(((temp * 9) /5)+ 32);
+  let fahrenheitTemp = Math.round((celsiusTemp * 9) / 5 + 32);
   temp.innerHTML = `${fahrenheitTemp}`;
   unit.innerHTML = "°F";
   } else {
     let temp = document.querySelector(".currentTemp");
-    let celsiusTemp = Math.round(((temp - 32) * 5) / 9);
+    celsiusTemp= Math.round(celsiusTemp);
     temp.innerHTML = `${celsiusTemp}`; 
     unit.innerHTML = `°C`;
   }
 }
 
-let unit = document.querySelector("#degreeConversion");
-unit.addEventListener("click", changeUnit);
-
-//Search engine
 
 function showWeather (response) {
 
@@ -79,7 +75,8 @@ let output = document.querySelector ("#displayCity");
 output.innerHTML = `${input}, ${country}`;
 
 let temp =  document.querySelector(".currentTemp");
-let nowTemp = Math.round(response.data.main.temp);
+celsiusTemp = response.data.main.temp;
+let nowTemp = Math.round(celsiusTemp);
 temp.innerHTML = `${nowTemp}`;
 
 let humidity = document.querySelector("#humidity");
@@ -122,6 +119,11 @@ searchCity(city);
 function searchCoordinates () {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
+
+let celsiusTemp = null;
+
+let unit = document.querySelector("#degreeConversion");
+unit.addEventListener("click", changeUnit);
 
 city = document.querySelector ("#citysearch");
 city.addEventListener("submit", handleEvent);
