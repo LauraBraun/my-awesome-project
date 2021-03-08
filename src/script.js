@@ -61,7 +61,7 @@ function changeUnit () {
 
 
 function showWeather (response) {
-
+console.log(response);
 let input = response.data.name;
 let country = response.data.sys.country;
 let output = document.querySelector ("#displayCity");
@@ -71,6 +71,9 @@ let temp =  document.querySelector(".currentTemp");
 celsiusTemp = response.data.main.temp;
 let nowTemp = Math.round(celsiusTemp);
 temp.innerHTML = `${nowTemp}`;
+
+let description = document.querySelector("#weatherDescription");
+description.innerHTML = `${response.data.weather[0].description}`;
 
 let humidity = document.querySelector("#humidity");
 let nowHumidity = response.data.main.humidity;
