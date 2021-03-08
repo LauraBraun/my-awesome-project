@@ -22,15 +22,15 @@ footer i {
   width: 60%;
   background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 }
+
 #currentConditions {
-  font-size: 80px;
-  margin: 0 40px;
-  padding-top: 20px;
+  display: block;
 }
 
 .currentTemp {
   font-size: 60px;
-  margin: 30px;
+  margin: 0px 30px;
+  line-height: 1;
 }
 
 .card {
@@ -46,6 +46,7 @@ footer i {
 a {
   text-decoration: none;
 }
+
 #degreeConversion {
   font-size: 20px;
   background-color: #3e4c76;
