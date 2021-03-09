@@ -91,6 +91,16 @@ let dayofweek = document.querySelector("#currentDay");
 dayofweek.innerHTML = getDay(response.data.dt * 1000);
 }
 
+function getForecast(response) {
+  console.log(response);
+}
+function getGeolocation(position) {
+  let lat = position.data[0].lat
+  let long = position.data[0].lon
+  let apiKey = "2312e7899c189d46fb63d2d7ce28c492";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=current,minutely,hourly&appid=${apiKey}`;
+  axios.get(apiUrl).then(getForecast);
+}
 function searchCity (city) {
 let apiKey = "2312e7899c189d46fb63d2d7ce28c492";
 let apiBeginUrl = "https://api.openweathermap.org/data/2.5/weather?";
@@ -98,6 +108,9 @@ let units = "metric";
 let apiUrl = `${apiBeginUrl}q=${city}&appid=${apiKey}&units=${units}`;
 
 axios.get(apiUrl).then(showWeather);
+
+apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city},&limit=1&appid=${apiKey}`;
+axios.get(apiUrl).then(getGeolocation); 
 }
 
 function handleEvent (event) {
@@ -106,7 +119,7 @@ let city = document.querySelector("#search-city").value;
 searchCity(city);
 }
 
- function getPosition(position) {
+function getPosition(position) {
   
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
