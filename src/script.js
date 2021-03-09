@@ -1,15 +1,7 @@
-function updateDateTime () {
- let day = [
-  `Sunday`,
-  `Monday`,
-  `Tuesday`,
-  `Wednesday`,
-  `Thursday`,
-  `Friday`,
-  `Saturday`
-];
+function updateDateTime (timestamp) {
 
-let month = [
+  let now = new Date(timestamp);
+  let month = [
     `January`,
     `Febuary`,
     `March`,
@@ -26,7 +18,6 @@ let month = [
 
 let monthDate = month[now.getMonth()];
 let date = now.getDate();
-let today= day[now.getDay()];
 let hours = now.getHours();
 if (hours < 10) {
   hours = `0${hours}`;
@@ -35,15 +26,25 @@ let minutes = now.getMinutes();
 if (minutes < 10){
     minutes = `0${minutes}`;
 }
-
-let dayofweek = document.querySelector("#currentDay");
-let time = document.querySelector("#currentTime");
-let currentDate = document.querySelector("#date");
-currentDate.innerHTML = `${date} ${monthDate}`;
-dayofweek.innerHTML = `${today}`;
-time.innerHTML = `${hours}:${minutes}`;
+return `${date} ${monthDate} ${hours}:${minutes}`;
 }
 
+function getDay(timestamp) {
+ let now = new Date(timestamp);
+  let day = [
+  `Sunday`,
+  `Monday`,
+  `Tuesday`,
+  `Wednesday`,
+  `Thursday`,
+  `Friday`,
+  `Saturday`
+];
+
+let today= day[now.getDay()];
+return `${today}`;
+
+}
 
 function changeUnit () {
   if (unit.innerHTML === "°C") {
@@ -59,9 +60,7 @@ function changeUnit () {
   }
 }
 
-
 function showWeather (response) {
-console.log(response);
 let input = response.data.name;
 let country = response.data.sys.country;
 let output = document.querySelector ("#displayCity");
@@ -80,11 +79,16 @@ let nowHumidity = response.data.main.humidity;
 humidity.innerHTML = `Humidity: ${nowHumidity} %`;
 
 let windSpeed = document.querySelector("#windspeed");
-let nowWindspeed = response.data.wind.speed;
+let nowWindspeed = Math.round(response.data.wind.speed);
 windSpeed.innerHTML = `Wind: ${nowWindspeed} m/s`;
 
 let iconElement = document.querySelector("#currentConditions");
-iconElement.setAttribute("src",  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+iconElement.setAttribute("src",  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
+let dateElement = document.querySelector("#currentDate");
+dateElement.innerHTML = updateDateTime(response.data.dt * 1000);
+let dayofweek = document.querySelector("#currentDay");
+dayofweek.innerHTML = getDay(response.data.dt * 1000);
 }
 
 function searchCity (city) {
@@ -117,9 +121,6 @@ searchCity(city);
 function searchCoordinates () {
   navigator.geolocation.getCurrentPosition(getPosition);
 }
-
-let now = new Date();
-updateDateTime(now);
 
 let celsiusTemp = null;
 

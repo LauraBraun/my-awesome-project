@@ -27,7 +27,7 @@ footer i {
   display: block;
 }
 
-#weatherDescription {
+#weatherDescription:first-letter {
   text-transform: capitalize;
 }
 .currentTemp {
