@@ -1,6 +1,5 @@
 function updateDateTime (timestamp) {
-
-  let now = new Date(timestamp);
+ let now = new Date(timestamp);
   let month = [
     `January`,
     `Febuary`,
@@ -43,7 +42,6 @@ function getDay(timestamp) {
 
 let today= day[now.getDay()];
 return `${today}`;
-
 }
 
 function changeUnit () {
@@ -93,14 +91,32 @@ dayofweek.innerHTML = getDay(response.data.dt * 1000);
 
 function getForecast(response) {
   console.log(response);
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+for (let index = 0; index < 6; index ++) {
+ let forecast = response.data.daily[index];
+  forecastElement.innerHTML += `
+          <div class="col-2">
+            ${getDay(forecast.dt * 1000)}
+            <br />
+            <div>
+              <img src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="">
+            </div>
+           <strong>${Math.round(forecast.temp.max)}°C </strong>/ ${Math.round(forecast.temp.min)}°C
+          </div>`;
 }
+}
+
 function getGeolocation(position) {
   let lat = position.data[0].lat
   let long = position.data[0].lon
   let apiKey = "2312e7899c189d46fb63d2d7ce28c492";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=current,minutely,hourly&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=current,minutely,hourly&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(getForecast);
 }
+
 function searchCity (city) {
 let apiKey = "2312e7899c189d46fb63d2d7ce28c492";
 let apiBeginUrl = "https://api.openweathermap.org/data/2.5/weather?";
@@ -114,21 +130,23 @@ axios.get(apiUrl).then(getGeolocation);
 }
 
 function handleEvent (event) {
-event.preventDefault();
+  event.preventdefault();
 let city = document.querySelector("#search-city").value;
 searchCity(city);
 }
 
 function getPosition(position) {
-  
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
     let apiKey = "2312e7899c189d46fb63d2d7ce28c492";
     let units = "metric";
     let apiBeginUrl = "https://api.openweathermap.org/data/2.5/weather?";
-    let apiUrl = `${apiBeginUrl}lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+    let apiUrl = `${apiBeginUrl}lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(showWeather);
+  axios.get(apiUrl).then(showWeather); 
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=current,minutely,hourly&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getForecast);
   }
 
 function searchCoordinates () {
