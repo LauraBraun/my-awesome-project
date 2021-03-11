@@ -130,7 +130,7 @@ axios.get(apiUrl).then(getGeolocation);
 }
 
 function handleEvent (event) {
-  event.preventdefault();
+event.preventDefault();
 let city = document.querySelector("#search-city").value;
 searchCity(city);
 }
