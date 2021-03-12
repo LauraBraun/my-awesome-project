@@ -90,7 +90,6 @@ dayofweek.innerHTML = getDay(response.data.dt * 1000);
 }
 
 function getForecast(response) {
-  console.log(response);
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
@@ -107,6 +106,9 @@ for (let index = 0; index < 6; index ++) {
            <strong>${Math.round(forecast.temp.max)}°C </strong>/ ${Math.round(forecast.temp.min)}°C
           </div>`;
 }
+
+let precipitation = document.querySelector("#precipitation");
+precipitation.innerHTML = `Precipitation: ${Math.round(response.data.daily[0].pop * 100)} %`;
 }
 
 function getGeolocation(position) {
@@ -142,6 +144,7 @@ function getPosition(position) {
     let units = "metric";
     let apiBeginUrl = "https://api.openweathermap.org/data/2.5/weather?";
     let apiUrl = `${apiBeginUrl}lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+
 
   axios.get(apiUrl).then(showWeather); 
 
